@@ -1,10 +1,15 @@
-const race = '100m sprint';
-const winners = ['Wes Bos', 'Tom Runner', 'Jerry Speed'];
+const box = document.querySelector('.box');
+box.addEventListener('click', function () {
+	let first = 'opening';
+	let second = 'open';
 
-const win = winners.map((winner, index) => ({name: winner, race, place: index +1}));
-console.table(win);
+	if (this.classList.contains(first)) {
+		[first, second] = [second, first];
+	}
 
-const ages = [45,99,12,45,63,43,23,53,43,29];
-
-const old = ages.filter(age => age >= 47);
-console.log(old);
+	this.classList.toggle(first);
+	setTimeout(() => {
+		console.log(this);
+		this.classList.toggle(second);
+	}, 500);
+});
