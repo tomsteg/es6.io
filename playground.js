@@ -1,43 +1,30 @@
-const button = document.querySelector('#pushy');
-button.addEventListener('click', function() {
-	console.log(this);
-	this.classList.toggle('on');
+const listItems = Array.from(document.getElementsByTagName('li'));
+const videoList = listItems.map(item => {
+	const video = {
+		time: item.getAttribute('data-time'),
+		title: item.innerHTML
+	};
+	return video;
 });
+const flexboxVideoList = videoList.filter(video => {
+	return video.title.match(/^Flexbox.*/) !== null;
+});
+const timeList = flexboxVideoList.map(video => video.time);
+let totalSeconds = 0;
+const secondsList = timeList.map(time => {
+	let timeSliced = time.split(':');
+	let minutes = parseInt(timeSliced[0], 10);
+	let seconds = parseInt(timeSliced[1], 10);
+	let timeInSeconds = minutes * 60 + seconds;
+	totalSeconds += timeInSeconds;
+	return timeInSeconds;
+});
+let hours = Math.floor(totalSeconds / 3600);
+totalSeconds %= 3600;
+let minutes = Math.floor(totalSeconds / 60);
+let seconds = totalSeconds % 60;
 
-const person = {
-	points: 23,
-	score() {
-		console.log(this);
-		this.points += 1;
-	}
-};
-person.score();
-console.log('Person', person);
-person.score();
-console.log('Person', person);
+console.log(secondsList);
+console.log(totalSeconds);
+console.log(minutes + ':' + seconds);
 
-class Car {
-	constructor(make, color) {
-		this.make = make;
-		this.color = color;
-	}
-}
-
-const beamer = new Car('bmw', 'blue');
-const subie = new Car('subaru', 'white');
-
-Car.prototype.summarize = function() {
-	return `This car is a ${this.make} in the color ${this.color}`;
-};
-
-console.log(beamer.summarize());
-console.log(subie.summarize());
-
-const orderChildren = function() {
-	const children = Array.from(arguments);
-	return children.map((child, index) => {
-		return `${child} was child #${index + 1}`;
-	});
-};
-
-console.log(orderChildren('Wes', 'Bos', 'Kas'));
