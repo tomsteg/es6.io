@@ -10,3 +10,8 @@ const filtered = items
 
 console.log(filtered);
 
+const numbers = [3,62,234,7,23,74,23,76,92];
+
+const filteredNumbers = numbers.filter(number => number > 70);
+
+console.log(filteredNumbers);
