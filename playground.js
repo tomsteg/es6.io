@@ -1,12 +1,27 @@
-function highlight(strings, ...values) {
-	let str = '';
-	strings.forEach((string, i) => {
-		str += `${string} <span class='hl'>${values[i] || ''}</span>`;
+const dict = {
+	HTML: 'Hypertext Markup Langunage',
+	CSS: 'Cascading Stylesheet',
+	JS: 'JavaScript'
+};
+
+function addAbbreviations (strings, ...values) {
+	const abbreviated = values.map(value => {
+		if (dict[value]) {
+			return `<abbr title="${dict[value]}">${value}</abbr>`;
+		}
+		return value;
 	});
-	return str;
+	return strings.reduce((sentence, string, i) => {
+		return `${sentence}${string}${abbreviated[i] || ''}`;
+	}, '');
 }
 
-const name = 'Snickers';
-const age = 100;
-const sentence = highlight`My dog's name is ${name} and he is ${age} years old.`;
-document.body.innerHTML = sentence;
+const first = 'Thomas';
+const last = 'Steglich';
+const sentence = addAbbreviations`Hallo my name is ${first} ${last} and
+I love to code ${'HTML'}, ${'CSS'} and ${'JS'}.`;
+
+const bio = document.querySelector('.bio');
+const p = document.createElement('p');
+p.innerHTML = sentence;
+bio.appendChild(p);
