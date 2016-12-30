@@ -1,15 +1,21 @@
-const details = ['Thomas', 123, 'tsreport.de'];
-const [name, id, website] = details;
+function convertCurrency (amount) {
 
-console.log(name, id, website);
+	const converted = {
+		USD: amount * 0.76,
+		GBP: amount * 0.53,
+		AUD: amount * 1.01,
+		MEX: amount * 13.3
+	};
+	return converted;
+}
 
-const data = 'Mountainbiking, Sports, 92843, 2334';
-const [itemName, category, sku, inventory] = data.split(',');
+const { USD, AUD } = convertCurrency(100);
+console.log( USD, AUD );
 
-console.log(itemName, category, sku, inventory);
+function tipCalc ({total, tip = 0.15, tax = 0.13}) {
+	return total + (tip * total) + (tax * total);
+}
 
-const team = ['Wes', 'Harry', 'Sarah', 'Keegan', 'Riker'];
-const [captain, assistant, ...players] = team;
+const bill = tipCalc({total: 200, tax: 0.19});
 
-console.log(captain, assistant, players);
-console.log(...players);
+console.log(bill);
