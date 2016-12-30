@@ -1,27 +1,15 @@
-const dict = {
-	HTML: 'Hypertext Markup Langunage',
-	CSS: 'Cascading Stylesheet',
-	JS: 'JavaScript'
-};
+const details = ['Thomas', 123, 'tsreport.de'];
+const [name, id, website] = details;
 
-function addAbbreviations (strings, ...values) {
-	const abbreviated = values.map(value => {
-		if (dict[value]) {
-			return `<abbr title="${dict[value]}">${value}</abbr>`;
-		}
-		return value;
-	});
-	return strings.reduce((sentence, string, i) => {
-		return `${sentence}${string}${abbreviated[i] || ''}`;
-	}, '');
-}
+console.log(name, id, website);
 
-const first = 'Thomas';
-const last = 'Steglich';
-const sentence = addAbbreviations`Hallo my name is ${first} ${last} and
-I love to code ${'HTML'}, ${'CSS'} and ${'JS'}.`;
+const data = 'Mountainbiking, Sports, 92843, 2334';
+const [itemName, category, sku, inventory] = data.split(',');
 
-const bio = document.querySelector('.bio');
-const p = document.createElement('p');
-p.innerHTML = sentence;
-bio.appendChild(p);
+console.log(itemName, category, sku, inventory);
+
+const team = ['Wes', 'Harry', 'Sarah', 'Keegan', 'Riker'];
+const [captain, assistant, ...players] = team;
+
+console.log(captain, assistant, players);
+console.log(...players);
