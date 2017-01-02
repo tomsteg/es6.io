@@ -1,21 +1,34 @@
-function convertCurrency (amount) {
+const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
 
-	const converted = {
-		USD: amount * 0.76,
-		GBP: amount * 0.53,
-		AUD: amount * 1.01,
-		MEX: amount * 13.3
-	};
-	return converted;
+for (const [index, cut] of cuts.entries()) {
+	console.log(`${cut} is the ${index + 1} item`);
 }
 
-const { USD, AUD } = convertCurrency(100);
-console.log( USD, AUD );
-
-function tipCalc ({total, tip = 0.15, tax = 0.13}) {
-	return total + (tip * total) + (tax * total);
+function addUpNumbers() {
+	let total = 0;
+	// arguments is not a tru array
+	console.log(arguments);
+	for (const num of arguments) {
+		total += num;
+	}
+	console.log(total);
+	return total;
 }
 
-const bill = tipCalc({total: 200, tax: 0.19});
+addUpNumbers(10,23,52,23,34,13,123);
 
-console.log(bill);
+
+const name = 'Thomas Steglich';
+
+for (const char of name) {
+	console.log(char);
+}
+
+
+const ps = document.querySelectorAll('p');
+
+for (const paragraph of ps) {
+	paragraph.addEventListener('click', function() {
+		console.log(this.textContent);
+	});
+}
